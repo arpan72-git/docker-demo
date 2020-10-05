@@ -13,8 +13,8 @@ pipeline{
 		}
 		
 		stage('Test'){
-			echo "running tests"
 			steps{
+				echo "running tests"
 				withMaven(maven: 'maven_3_6_3'){
 					bat 'mvn test'
 				}
@@ -22,8 +22,8 @@ pipeline{
 		}
 		
 		stage('Deploy'){
-			echo "deploying project"
 			steps{
+				echo "deploying project"
 				withMaven(maven: 'maven_3_6_3'){
 					bat 'mvn deploy'
 				}
