@@ -7,7 +7,7 @@ pipeline{
 			steps{
 				echo "Cleaning project"
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn clean'
+					sh 'mvn clean'
 				}
 			}
 		}
@@ -17,7 +17,7 @@ pipeline{
 			steps{
 				echo "Compiling project"
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn compile'
+					sh 'mvn compile'
 				}
 			}
 		}
@@ -26,7 +26,7 @@ pipeline{
 			steps{
 				echo "Running unit tests"
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn test'
+					sh 'mvn test'
 				}
 			}
 		}
@@ -35,7 +35,7 @@ pipeline{
 			steps{
 				echo "Docker build"
 				//withMaven(maven: 'maven_3_6_3'){
-				//	bat 'mvn deploy'
+				//	sh 'mvn deploy'
 				//}
 			}
 		}
@@ -45,7 +45,7 @@ pipeline{
 			steps{
 				echo "Deploying to docker"
 				//withMaven(maven: 'maven_3_6_3'){
-				//	bat 'mvn clean compile'
+				//	sh 'mvn clean compile'
 				//}
 			}
 		}
