@@ -43,7 +43,7 @@ pipeline{
 		stage('Docker Deploy'){
 			
 			steps{
-				echo "Deploying to docker"
+				echo "Deploying to docker host"
 				//withMaven(maven: 'maven_3_6_3'){
 				//	sh 'mvn clean compile'
 				//}
