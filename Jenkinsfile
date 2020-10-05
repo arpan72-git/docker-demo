@@ -32,11 +32,11 @@ pipeline{
 		}
 		
 		stage('Docker Build'){
+			agent {
+                docker { image 'hello-world' }
+            }
 			steps{
 				echo "Docker build"
-				//withMaven(maven: 'maven_3_6_3'){
-				//	sh 'mvn deploy'
-				//}
 			}
 		}
 		
