@@ -2,33 +2,54 @@ pipeline{
 	agent any
 	
 	stages{
-		stage('Compile'){
+		stage('Clean'){
 			
 			steps{
-				echo "compiling project"
+				echo "Cleaning project"
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn clean compile'
+					bat 'mvn clean'
 				}
 			}
 		}
 		
-		stage('Test'){
+		stage('Compile'){
+			
 			steps{
-				echo "running tests"
+				echo "Compiling project"
+				withMaven(maven: 'maven_3_6_3'){
+					bat 'mvn compile'
+				}
+			}
+		}
+		
+		stage('Unit Tests'){
+			steps{
+				echo "Running unit tests"
 				withMaven(maven: 'maven_3_6_3'){
 					bat 'mvn test'
 				}
 			}
 		}
 		
-		stage('Deploy'){
+		stage('Docker Build'){
 			steps{
-				echo "deploying project"
-				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn deploy'
-				}
+				echo "Docker build"
+				//withMaven(maven: 'maven_3_6_3'){
+				//	bat 'mvn deploy'
+				//}
 			}
 		}
+		
+		stage('Docker Deploy'){
+			
+			steps{
+				echo "Deploying to docker"
+				//withMaven(maven: 'maven_3_6_3'){
+				//	bat 'mvn clean compile'
+				//}
+			}
+		}
+		
 	}
 
 }
