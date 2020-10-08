@@ -1,4 +1,4 @@
-WORKSPACE="DEMO-APP"
+WORKSPACE=""
 pipeline{
 	agent any
 	
