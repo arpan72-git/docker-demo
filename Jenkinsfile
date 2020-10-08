@@ -7,7 +7,7 @@ pipeline{
 			
 			steps{
 				echo "Cleaning project"
-				dir("$WORKSPACE" ) 
+				//dir("$WORKSPACE" ) 
 				withMaven(maven: 'maven_3_6_3'){
 					bat 'mvn clean'
 				}
