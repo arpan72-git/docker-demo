@@ -6,6 +6,7 @@ pipeline{
 			
 			steps{
 				echo "Cleaning project"
+				dir("${params.workspace}" ) 
 				withMaven(maven: 'maven_3_6_3'){
 					bat 'mvn clean'
 				}
