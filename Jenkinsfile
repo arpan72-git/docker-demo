@@ -43,7 +43,12 @@ pipeline{
 		}
 		
 		stage('Docker Build'){
-			agent { dockerfile true }
+			agent { 
+				dockerfile {
+					customWorkspace '/test'
+      					filename 'Dockerfile'
+				} 
+			}
 			steps{
 				echo "Docker build"
 			}
