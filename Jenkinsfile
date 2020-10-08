@@ -32,9 +32,7 @@ pipeline{
 		}
 		
 		stage('Docker Build'){
-			agent {
-                docker { image 'hello-world' }
-            }
+			agent { dockerfile true }
 			steps{
 				echo "Docker build"
 			}
