@@ -45,7 +45,7 @@ pipeline{
 		stage('Docker Build'){
 			agent { 
 				dockerfile {
-					customWorkspace '/test'
+					customWorkspace '\Program Files (x86)\Jenkins\workspace\Docker-Demo'
       					filename 'Dockerfile'
 				} 
 			}
