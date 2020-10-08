@@ -31,6 +31,15 @@ pipeline{
 			}
 		}
 		
+		stage('Publish'){
+			steps{
+				echo "Publish app"
+				withMaven(maven: 'maven_3_6_3'){
+					bat 'mvn package'
+				}
+			}
+		}
+		
 		stage('Docker Build'){
 			agent { dockerfile true }
 			steps{
