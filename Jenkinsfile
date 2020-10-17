@@ -1,4 +1,3 @@
-WORKSPACE=""
 pipeline{
 	agent any
 	
@@ -43,14 +42,16 @@ pipeline{
 		}
 		
 		stage('Docker Build'){
-			agent { 
-				dockerfile {
-					customWorkspace '/Progra~2/Jenkins/workspace/Docker-Demo'
-      					filename 'Dockerfile'
-				} 
-			}
-			steps{
-				echo "Docker build"
+			node {
+    			    checkout scm
+
+    			    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+
+        		    def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+        			/* Push the container to the custom Registry */
+        		    customImage.push()
+    			    }
 			}
 		}
 		
