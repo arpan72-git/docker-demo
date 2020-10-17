@@ -63,10 +63,10 @@ pipeline{
 		stage('Docker Deploy'){
 			
 			steps{
-				echo "Deploying to docker host"
-				//withMaven(maven: 'maven_3_6_3'){
-				//	sh 'mvn clean compile'
-				//}
+				echo "Docker Deploy"
+				script{
+					bat 'kubectl create -f nginx-deploy.yml'
+				}
 			}
 		}
 		
