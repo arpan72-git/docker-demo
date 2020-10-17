@@ -47,9 +47,7 @@ pipeline{
 		
 		stage('Docker Build'){
 			steps{	
-				node {
-				    checkout scm
-
+				script {
 				    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
 
 				    def customImage = docker.build("arpan62/myfirstjenkinsdockerdemo:${env.BUILD_ID}")
