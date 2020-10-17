@@ -64,9 +64,11 @@ pipeline{
 			
 			steps{
 				echo "Docker Deploy"
-				withKubeConfig{
-					bat 'kubectl create -f nginx-deploy.yml'
-				}
+				agent {
+			    kubernetes {
+			      yamlFile 'KubernetesPod.yaml'
+			    }
+  }
 			}
 		}
 		
