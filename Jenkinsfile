@@ -42,16 +42,18 @@ pipeline{
 		}
 		
 		stage('Docker Build'){
-			node {
-    			    checkout scm
+			steps{	
+				node {
+				    checkout scm
 
-    			    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+				    docker.withRegistry('https://registry.example.com', 'credentials-id') {
 
-        		    def customImage = docker.build("my-image:${env.BUILD_ID}")
+				    def customImage = docker.build("my-image:${env.BUILD_ID}")
 
-        			/* Push the container to the custom Registry */
-        		    customImage.push()
-    			    }
+					/* Push the container to the custom Registry */
+				    customImage.push()
+				    }
+				}
 			}
 		}
 		
