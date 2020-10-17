@@ -62,14 +62,14 @@ pipeline{
 		
 		stage('Docker Deploy'){
 			
-			steps{
-				echo "Docker Deploy"
+			
+				//echo "Docker Deploy"
 				agent {
-			    kubernetes {
-			      yamlFile 'KubernetesPod.yaml'
-			    }
-  }
-			}
+				    kubernetes {
+				      yamlFile 'KubernetesPod.yaml'
+				    }
+  				}
+			
 		}
 		
 	}
