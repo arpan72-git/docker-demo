@@ -1,5 +1,7 @@
 pipeline{
-	agent any
+	node {
+ 		label 'app'
+ 	}
 	
 	stages{
 		stage('Clean'){
@@ -46,9 +48,9 @@ pipeline{
 				node {
 				    checkout scm
 
-				    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+				    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
 
-				    def customImage = docker.build("my-image:${env.BUILD_ID}")
+				    def customImage = docker.build("arpan62/myfirstjenkinsdockerdemo:${env.BUILD_ID}")
 
 					/* Push the container to the custom Registry */
 				    customImage.push()
