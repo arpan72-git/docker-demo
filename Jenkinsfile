@@ -64,7 +64,7 @@ pipeline{
 			
 			steps{
 				echo "Docker Deploy"
-				script{
+				withKubeConfig{
 					bat 'kubectl create -f nginx-deploy.yml'
 				}
 			}
