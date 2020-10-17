@@ -62,14 +62,12 @@ pipeline{
 		
 		stage('Docker Deploy'){
 			
-			
-				//echo "Docker Deploy"
-				agent {
-				    kubernetes {
-				      yamlFile 'KubernetesPod.yaml'
-				    }
-  				}
-			
+			steps{
+				echo "Docker Deploy"
+				withKubeConfig([credentialsId: 'docker-desktop', serverUrl: 'https://kubernetes.docker.internal:6443']){
+					bat 'kubectl create -f nginx-deploy.yml'
+				}
+			}
 		}
 		
 	}
