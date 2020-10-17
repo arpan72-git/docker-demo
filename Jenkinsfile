@@ -47,6 +47,7 @@ pipeline{
 		
 		stage('Docker Build'){
 			steps{	
+				echo "Docker Build"
 				script {
 				    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
 
