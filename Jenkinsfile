@@ -12,7 +12,7 @@ pipeline{
 				echo "Cleaning project"
 				//dir("$WORKSPACE" ) 
 				withMaven(maven: 'maven_3_6_3'){
-					sh 'mvn clean'
+					bat 'mvn clean'
 				}
 			}
 		}
@@ -22,7 +22,7 @@ pipeline{
 			steps{
 				echo "Compiling project"
 				withMaven(maven: 'maven_3_6_3'){
-					sh 'mvn compile'
+					bat 'mvn compile'
 				}
 			}
 		}
@@ -31,7 +31,7 @@ pipeline{
 			steps{
 				echo "Running unit tests"
 				withMaven(maven: 'maven_3_6_3'){
-					sh 'mvn test'
+					bat 'mvn test'
 				}
 			}
 		}
@@ -40,7 +40,7 @@ pipeline{
 			steps{
 				echo "Publish app"
 				withMaven(maven: 'maven_3_6_3'){
-					sh 'mvn package'
+					bat 'mvn package'
 				}
 			}
 		}
