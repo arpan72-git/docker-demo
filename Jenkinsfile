@@ -9,11 +9,9 @@ pipeline{
 		stage('Clean'){
 			
 			steps{
-				echo "Cleaning project"
-				script{
-					withMaven(maven: 'maven_3_6_3'){
-						sh 'mvn clean'
-					}
+				echo "Cleaning project" 
+				withMaven(maven: 'maven_3_6_3'){
+					sh 'mvn clean'
 				}
 			}
 		}
@@ -65,7 +63,9 @@ pipeline{
 			
 			steps{
 				echo "Docker Deploy"
-				sh "changeTag.sh"
+				script{
+					sh "changeTag.sh"
+				}
 				withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://kubernetes.docker.internal:6443']){
 					sh 'kubectl apply -f nginx-deploy.yml'
 					sh 'kubectl apply -f nginx-svc-np.yml'
