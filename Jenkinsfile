@@ -12,7 +12,7 @@ pipeline{
 				echo "Cleaning project"
 				//dir("$WORKSPACE" ) 
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn clean'
+					sh 'mvn clean'
 				}
 			}
 		}
@@ -22,7 +22,7 @@ pipeline{
 			steps{
 				echo "Compiling project"
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn compile'
+					sh 'mvn compile'
 				}
 			}
 		}
@@ -31,7 +31,7 @@ pipeline{
 			steps{
 				echo "Running unit tests"
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn test'
+					sh 'mvn test'
 				}
 			}
 		}
@@ -40,7 +40,7 @@ pipeline{
 			steps{
 				echo "Publish app"
 				withMaven(maven: 'maven_3_6_3'){
-					bat 'mvn package'
+					sh 'mvn package'
 				}
 			}
 		}
@@ -66,8 +66,8 @@ pipeline{
 				echo "Docker Deploy"
 				sh "changeTag.sh"
 				withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://kubernetes.docker.internal:6443']){
-					bat 'kubectl apply -f nginx-deploy.yml'
-					bat 'kubectl apply -f nginx-svc-np.yml'
+					sh 'kubectl apply -f nginx-deploy.yml'
+					sh 'kubectl apply -f nginx-svc-np.yml'
 				}
 			}
 		}
