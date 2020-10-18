@@ -4,7 +4,7 @@ cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) &&
     setlocal enableextensions disabledelayedexpansion
 
     set "search=tagVersion"
-    set "replace=${env.BUILD_ID}"
+    set "replace=%1"
 
     set "textFile=nginx-deploy.yml"
 
