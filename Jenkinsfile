@@ -10,13 +10,9 @@ pipeline{
 			
 			steps{
 				echo "Cleaning project"
-				//dir("$WORKSPACE" ) 
-				withMaven(maven: 'maven_3_6_3'){
-					if(isUnix()){
+				script{
+					withMaven(maven: 'maven_3_6_3'){
 						sh 'mvn clean'
-					}
-					else{
-						bat 'mvn clean'
 					}
 				}
 			}
@@ -27,12 +23,7 @@ pipeline{
 			steps{
 				echo "Compiling project"
 				withMaven(maven: 'maven_3_6_3'){
-					if(isUnix()){
-						sh 'mvn compile'
-					}
-					else{
-						bat 'mvn compile'
-					}
+					sh 'mvn compile'
 				}
 			}
 		}
@@ -41,12 +32,7 @@ pipeline{
 			steps{
 				echo "Running unit tests"
 				withMaven(maven: 'maven_3_6_3'){
-					if(isUnix()){
-						sh 'mvn test'
-					}
-					else{
-						bat 'mvn test'
-					}
+					sh 'mvn test'
 				}
 			}
 		}
@@ -55,12 +41,7 @@ pipeline{
 			steps{
 				echo "Publish app"
 				withMaven(maven: 'maven_3_6_3'){
-					if(isUnix()){
-						sh 'mvn package'
-					}
-					else{
-						bat 'mvn package'
-					}
+					sh 'mvn package'
 				}
 			}
 		}
@@ -84,18 +65,10 @@ pipeline{
 			
 			steps{
 				echo "Docker Deploy"
-				if(isUnix()){
-					sh "changeTag.sh"
-				}
+				sh "changeTag.sh"
 				withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://kubernetes.docker.internal:6443']){
-					if(isUnix()){
-						sh 'kubectl apply -f nginx-deploy.yml'
-						sh 'kubectl apply -f nginx-svc-np.yml'
-					}
-					else{
-						bat 'kubectl apply -f nginx-deploy.yml'
-						bat 'kubectl apply -f nginx-svc-np.yml'
-					}
+					sh 'kubectl apply -f nginx-deploy.yml'
+					sh 'kubectl apply -f nginx-svc-np.yml'
 				}
 			}
 		}
