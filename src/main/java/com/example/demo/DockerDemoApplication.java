@@ -18,4 +18,10 @@ public class DockerDemoApplication {
 		return "Hello. This is my first docker demo.";
 	}
 
+	@GetMapping("/demo1")
+	public String getDemo() {
+		return "Hello. I have successfully created my first jenkins demo.";
+	}
+
 }
+
