@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: nginx-container
-          image: arpan62/myfirstjenkinsdockerdemo:${env.BUILD_ID}
+          image: arpan62/myfirstjenkinsdockerdemo:tagVersion
           ports:
             - containerPort: 8999
 
