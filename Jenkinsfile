@@ -11,9 +11,7 @@ pipeline{
 			steps{
 				echo "Cleaning project" 
 				withMaven(maven: 'maven_3_6_3'){
-					script{
-						sh 'mvn clean'
-					}
+					bat 'mvn clean'
 				}
 			}
 		}
