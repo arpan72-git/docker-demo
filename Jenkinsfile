@@ -63,9 +63,7 @@ pipeline{
 			
 			steps{
 				echo "Docker Deploy"
-				script{
-					sh "changeTag.sh"
-				}
+					bat "changeTag.bat"
 				withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://kubernetes.docker.internal:6443']){
 					bat 'kubectl apply -f nginx-deploy.yml'
 					bat 'kubectl apply -f nginx-svc-np.yml'
