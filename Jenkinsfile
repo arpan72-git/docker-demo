@@ -64,7 +64,7 @@ pipeline{
 			
 			steps{
 				echo "Docker Deploy"
-				withKubeConfig([credentialsId: 'docker-desktop', serverUrl: 'https://kubernetes.docker.internal:6443']){
+				withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://kubernetes.docker.internal:6443']){
 					bat 'kubectl create -f nginx-deploy.yml'
 				}
 			}
